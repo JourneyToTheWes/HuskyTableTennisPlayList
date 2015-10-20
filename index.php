@@ -1,24 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Wesley
- * Date: 10/17/2015
- * Time: 3:14 PM
- */
-class Host {
-    /** @var $tableName string */
-    private $tableName;
-
-    /**
-     * @param $tableName string
-     */
-    public function __construct($tableName) {
-        $this->tableName = $tableName;
-    }
-
-
-}
-
-
-
-?>
+require_once $_SERVER['DOCUMENT_ROOT'] . '/.site/php/httpl/Setup.php';
+use common\base\OutputBuffering;
+use common\template\TemplateUtils;
+//We do this so that page scripts have an opportunity to send headers
+OutputBuffering::start();
+TemplateUtils::renderRequestedContentPage(
+		$_SERVER['DOCUMENT_ROOT'] . "/.site/php/httpl/html/content",
+		"/index.php");
+OutputBuffering::flush();
